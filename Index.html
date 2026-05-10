@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>روز شمار ساده</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #countdown {
+            font-size: 48px;
+            font-weight: bold;
+            background: #f0f0f0;
+            display: inline-block;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .label {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>📅 روز شمار تا رویداد مورد نظر</h1>
+    <div id="countdown">--</div>
+    <div class="label">روز باقی‌مانده</div>
+
+    <script>
+        // تاریخ هدف را اینجا تغییر بده (سال، ماه، روز)
+        // توجه: ماه از 0 تا 11 است – یعنی 0 = ژانویه، 11 = دسامبر
+        // مثال: 20 اسفند 1404 شمسی معادل 11 مارس 2025
+        const targetDate = new Date(2025, 2, 20); // 20 مارس 2025
+
+        function updateCountdown() {
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById('countdown').innerHTML = '🎉 رویداد فرا رسید 🎉';
+                return;
+            }
+
+            // تبدیل میلی‌ثانیه به روز
+            const daysLeft = Math.floor(difference / (1000 * 60 * 60 * 24));
+            document.getElementById('countdown').innerHTML = daysLeft;
+        }
+
+        updateCountdown(); // اجرا در لحظه
+        setInterval(updateCountdown, 86400000); // به‌روزرسانی هر 24 ساعت
+    </script>
+</body>
+</html>
